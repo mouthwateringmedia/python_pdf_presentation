@@ -1,0 +1,79 @@
+What Happens When A Python Hacker Gets P☃☎★♅d Off With GUI Presentation Tools
+◦
+Michael Hudson-Doyle
+
+(based on a true story)
+
+I wanted to give a talk in the "one short sentence per slide" style.
+
+Tried Open Office.
+
+Aaarrgh!
+(well, you know)
+
+Tried a little to install Bruce.
+
+Aaarrgh!
+(not packaged)
+
+(or released, even, at the time)
+
+Tried mgp.
+
+Aaarrgh!
+(random X errors)
+
+Meanwhile had written the sentences I wanted to say in a text file.
+
+So wrote a simple script that dug the sentences of the file and printed them one at a time.
+
+{{{
+for slide in slides:
+    os.system('clear')
+    print '\n'*10
+    print slide
+    raw_input()
+}}}
+
+Problem: couldn't go backwards.
+
+Solution: terminal hacking!
+
+(Obviously)
+
+Stole scary code from my old pyrepl project.
+
+For example:
+
+{{{
+self.__svtermstate = \
+    tcgetattr(self.input_fd)
+raw = self.__svtermstate.copy()
+raw.lflag &=~ \
+ (termios.ICANON|termios.ECHO|
+  termios.IEXTEN|termios.ISIG)
+raw.oflag &=~ (termios.OPOST)
+raw.cflag |=  (termios.CS8)
+...
+tcsetattr(self.input_fd,
+ termios.TCSADRAIN, raw)
+}}}
+
+Then
+
+{{{
+i = 0
+while i < len(slides):
+    show_slide(i)
+    e = get_event()
+    if e.name == 'left':
+       i -= 1
+    else:
+       i += 1
+}}}
+
+From there, just a short step to dissolve transitions, *bold* support etc.
+
+bzr get lp:console-presenter
+
+(Background image courtesy of gnome-terminal).
