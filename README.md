@@ -1,5 +1,5 @@
 # Automating PDFs with Python and command-line tools
-## by Edwin Grubbs <egrubbs@mwmdigital.com>
+### by Edwin Grubbs <egrubbs@mwmdigital.com>
 Presented at [PyHou Meetup](http://www.meetup.com/python-14/)
 
 -------------------------------------------------------------
@@ -22,3 +22,8 @@ You can get wkhtmltopdf 0.12.0 binaries from [http://wkhtmltopdf.org/downloads.h
 You can get PyPDF2 and reportlab plus the dependencies for the Django example just by running:
 
 ```pip install -r requirements.txt```
+
+## Running Django Example
+
+1. Edit the WKHTMLTOPDF_PATH setting in ```django_example/main/settings.py```
+1. Run: ```python django_example/manage.py syncdb``

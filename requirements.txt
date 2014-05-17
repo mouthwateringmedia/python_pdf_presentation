@@ -1,0 +1,10 @@
+# reportlab will automatically install Pillow if you don't already have
+# PIL on your system. PIL doesn't have all of its features turned on if
+# you don't have all the necessary libraries, so it can be simpler to
+# just install PIL from binary packages for your OS instead of using pip.
+reportlab==3.1.8
+
+PyPDF2
+
+Django>=1.4,<1.7
+django-devserver==0.8.0
