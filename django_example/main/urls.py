@@ -17,4 +17,6 @@ urlpatterns = patterns('',
 urlpatterns += patterns('main.views',
     url(r'^print-to-pdf/(?P<name>[^/]*)/(?P<url>.*)$',
         'print_to_pdf', name='print_to_pdf'),
+    url(r'^add-header/(?P<custom_text>.*)/$',
+        'add_header', name='add_header'),
 )
