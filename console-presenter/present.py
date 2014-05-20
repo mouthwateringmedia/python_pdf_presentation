@@ -78,7 +78,7 @@ class CodeScreen(Screen):
 
 
 def split_text(text):
-    return text.strip().split('\n\n')
+    return text.strip().split('\n#####\n')
 
 
 def split_code(text):
@@ -312,10 +312,11 @@ try:
                         break
                     x, y, o, n = diffs.pop()
                     s += f[x, y] + curses.tparm(c._cup, y, x)
+                    color = (i % 7) + 1
                     if y == len(cur_screen) - 1:
-                        s += curses.tparm(c._setaf, 0)
+                        s += curses.tparm(c._setaf, color)
                     else:
-                        s += curses.tparm(c._setaf, 0)
+                        s += curses.tparm(c._setaf, color)
                     s += n.encode('utf-8')
                     os.write(0, s)
                 time.sleep(d)

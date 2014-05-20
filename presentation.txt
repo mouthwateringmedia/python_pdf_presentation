@@ -1,22 +1,51 @@
 Starting up Powerpoint
 ⌛
 
+#####
 ಠಠ I see you are trying to show
 📎  a presentation in a terminal.
 
+#####
 Automating PDFs with Python and command-line tools
 by Edwin Grubbs <egrubbs@mwmdigital.com>
 
+https://github.com/mouthwateringmedia/python_pdf_presentation
+
+
+
+
+#####
+Automating PDFs with Python and command-line tools
+by Edwin Grubbs <egrubbs@mwmdigital.com>
+ 
+https://github.com/mouthwateringmedia/python_pdf_presentation
+ 
+ಠಠ Would you like a shorter url? |
+📎  http://goo.gl/rDmfxG          |
+
+#####
 Software Used:
 ----------------------------------------
 * http://wkhtmltopdf.org/              *
 |    99% of the work                   |
-| http://mstamy2.github.io/PyPDF2/     |
+* http://mstamy2.github.io/PyPDF2/     *
 |    concatenation & merging           |
-| http://www.reportlab.com/opensource/ |
+* http://www.reportlab.com/opensource/ *
 |    much faster than wkhtmltopdf      |
 |    for minor edits                   |
 
+#####
+* tar -tf wkhtmltox-...tar.xz *
+---------------------------------------------
+| wkhtmltox/bin/wkhtmltopdf                 |
+| wkhtmltox/bin/wkhtmltoimage               |
+| wkhtmltox/lib/libwkhtmltox.so.0.12.0      |
+| wkhtmltox/include/wkhtmltox/image.h       |
+| wkhtmltox/include/wkhtmltox/dllbegin.inc  |
+| wkhtmltox/include/wkhtmltox/dllend.inc    |
+| wkhtmltox/include/wkhtmltox/pdf.h         |
+
+#####
 Demo html-to-pdf in Django:
 First, log into http://localhost:8000/admin/
 Then, open http://localhost:8000/print-to-pdf/MyPDFName/admin/
