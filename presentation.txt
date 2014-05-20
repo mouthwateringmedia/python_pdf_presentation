@@ -35,9 +35,9 @@ Software Used:
 |    for minor edits                   |
 
 #####
-* tar -tf wkhtmltox-...tar.xz *
+* tar -xJvf wkhtmltox-...tar.xz *
 ---------------------------------------------
-| wkhtmltox/bin/wkhtmltopdf                 |
+| wkhtmltox/bin/wkhtmltopdf        (35 MB)  |
 | wkhtmltox/bin/wkhtmltoimage               |
 | wkhtmltox/lib/libwkhtmltox.so.0.12.0      |
 | wkhtmltox/include/wkhtmltox/image.h       |
@@ -45,9 +45,54 @@ Software Used:
 | wkhtmltox/include/wkhtmltox/dllend.inc    |
 | wkhtmltox/include/wkhtmltox/pdf.h         |
 
+On Linux: 14M compressed / 111 MB uncompressed
+
 #####
-Demo html-to-pdf in Django:
-First, log into http://localhost:8000/admin/
-Then, open http://localhost:8000/print-to-pdf/MyPDFName/admin/
-which will grab http://localhost:8000/admin/
-and create a pdf.
+wkhtmltopdf is webkit based so testing with Chrome
+or Safari will generate similar results.
+For some reason landscape mode needs to be
+zoomed out to be the same size as portrait mode.
+----------------------------
+| @media print {           |
+|     @page {              |
+|         size: landscape; |
+|         margin: 0.25in;  |
+|     }                    |
+|     body {               |
+|         zoom: 0.75;      |
+|     }                    |
+| }                        |
+
+#####
+There are two HTML standards for printing headers and footers.
+wkhtmltopdf doesn't support either of them.
+--------------------------------------------
+| @media print {                           |
+|    thead {display: table-header-group;}  |
+| }                                        |
+--------------------------------------------
+| @page {                                  |
+|   @top-center {                          |
+|     content: element(pageHeader);        |
+|   }                                      |
+| }                                        |
+| #pageHeader {                            |
+|   position: running(pageHeader);         |
+| }                                        |
+
+#####
+Fortunately, wkhtmltopdf provides the
+--header-html and --footer-html options.
+
+It is very important that your header and footer
+contain a <!DOCTYPE>.
+--------------
+| <!DOCTYPE> |
+| <html>     |
+|   <body>   |
+|   </body>  |
+| </html>    |
+
+#####
+Useful links:
+| https://github.com/incuna/django-wkhtmltopdf |

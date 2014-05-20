@@ -20,9 +20,50 @@ def print_to_pdf(request, name, url):
             #'xvfb-run', '-a',
             settings.WKHTMLTOPDF_PATH, '--quiet', '--disable-javascript',
             '--page-size', 'Letter', '--cookie', 'sessionid', session_id,
+            '--print-media-type',
             url, temp.name
         ]
-        print '\n', command
+        p = subprocess.Popen(command, stdout=subprocess.PIPE)
+        p.wait()
+        response = HttpResponse(temp.read(), mimetype='application/pdf')
+    response['Content-Disposition'] = 'inline; filename={}.pdf'.format(name)
+    return response
+
+
+from django.shortcuts import render_to_response
+from django.core.urlresolvers import reverse
+
+
+def pdf_header(request):
+    return render_to_response(
+        'pdf_header.html',
+        dict(request=request)
+    )
+
+
+def print_to_pdf_with_headers(request, name, url):
+    # Build the url manually to obtain GET parameters without having to
+    # append request.META['QUERY_STRING'].
+    url = '/'.join(request.build_absolute_uri().split('/')[5:])
+    if not url.startswith('/'):
+        url = '/' + url
+    url = request.build_absolute_uri(url)
+    session_id = request.COOKIES.get('sessionid', '')
+    with tempfile.NamedTemporaryFile(dir='/tmp/') as temp:
+        header_url = reverse('pdf_header')
+        command = [
+            'env', '-i',
+            # If you are use the wkhtmltopdf 0.9.9 package on Ubuntu,
+            # then it will require an X server, so if you want to run it
+            # headless on a server, use xvfb-run.
+            #'xvfb-run', '-a',
+            settings.WKHTMLTOPDF_PATH, '--quiet', '--disable-javascript',
+            '--page-size', 'Letter', '--cookie', 'sessionid', session_id,
+            '--print-media-type',
+            '--header-html', header_url,
+            #'--footer-html', footer_url,
+            url, temp.name
+        ]
         p = subprocess.Popen(command, stdout=subprocess.PIPE)
         p.wait()
         response = HttpResponse(temp.read(), mimetype='application/pdf')

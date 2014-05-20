@@ -1,0 +1,11 @@
+<!DOCTYPE>
+<html>
+  <body>
+    <dl>
+      {% for name, value in request.REQUEST.items %}
+        <dt>{{ name }}</dt>
+        <dd>{{ value }}</dd>
+      {% endfor %}
+    </dl>
+  </body>
+</html>

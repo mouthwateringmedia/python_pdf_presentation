@@ -36,7 +36,7 @@
     <div class="nav">
       <h1>PDF automation demos:</h1>
       <ol>
-        <li><b>wkhtmltopdf demo</b>
+        <li><b>wkhtmltopdf basic demo</b>
           <ol type="a">
             <li><a href="/admin/" target="nav-view">View Django admin</a></li>
             <li><a href="{% url 'print_to_pdf' 'MyAdminFileName' '/admin/' %}"
@@ -53,6 +53,17 @@
             <li><a href="/static/sample2.pdf" target="nav-view">View sample2.pdf</a></li>
             <li><a href="{% url 'add_header' 'Testing 123' %}"
                    target="_blank">Create concatenated pdf with a header</a>
+            </li>
+          </ol>
+        </li>
+
+        <li><b>wkhtmltopdf headers/footers demo</b>
+          <ol type="a">
+            <li><a href="/static/tall.html" target="nav-view">View tall.html</a></li>
+            <li><a href="{% url 'print_to_pdf_with_headers' 'Tall' '/static/tall.html' %}"
+                   target="_blank"
+              >Create PDF with<br/>
+              <tt>http://localhost:8000/print-to-pdf-with-headers/Tall/static/tall.html</tt></a>
             </li>
           </ol>
         </li>
