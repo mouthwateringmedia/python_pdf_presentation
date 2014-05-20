@@ -30,8 +30,7 @@ curses.setupterm()
 civis = curses.tigetstr('civis')
 cnorm = curses.tigetstr('cnorm')
 bold = curses.tigetstr('bold')
-#default_color = curses.tigetstr('sgr0')
-default_color = curses.tparm(curses.tigetstr('setaf'), random.choice(range(1, 8)))
+sgr0 = curses.tigetstr('sgr0')
 
 
 class Screen(object):
@@ -275,17 +274,15 @@ try:
                 if f[xx, yy] and star_count % 2 == 0:
                     f[xx, yy] = bold
                 else:
-                    f[xx, yy] = default_color
+                    f[xx, yy] = sgr0
         if old_screen is None or len(old_screen) != len(cur_screen) or \
                len(old_screen[0]) != len(cur_screen[0]):
             c._C__write_code(c._cup, 0, 0)
             os.system('clear')
-            col = curses.tparm(c._setaf, 8)
-
             for line in cur_screen:
                 #if line == cur_screen[-1]:
                 #    c._C__write_code(c._setaf, 7)
-                os.write(0, '\r\n' + col + line.encode('utf-8') + col)
+                os.write(0, '\r\n'+line.encode('utf-8'))
             c._C__write_code(c._setaf, 0)
         else:
             diffs = set()

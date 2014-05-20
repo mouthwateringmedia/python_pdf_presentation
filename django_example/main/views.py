@@ -7,7 +7,6 @@ from django.conf import settings
 def print_to_pdf(request, name, url):
     # Build the url manually to obtain GET parameters without having to
     # append request.META['QUERY_STRING'].
-    import pdb; pdb.set_trace()
     url = '/'.join(request.build_absolute_uri().split('/')[5:])
     if not url.startswith('/'):
         url = '/' + url
