@@ -50,7 +50,7 @@ def print_to_pdf_with_headers(request, name, url):
     url = request.build_absolute_uri(url)
     session_id = request.COOKIES.get('sessionid', '')
     with tempfile.NamedTemporaryFile(dir='/tmp/') as temp:
-        header_url = reverse('pdf_header')
+        header_url = 'http://localhost:8000' + reverse('pdf_header')
         command = [
             'env', '-i',
             # If you are use the wkhtmltopdf 0.9.9 package on Ubuntu,

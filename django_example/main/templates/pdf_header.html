@@ -1,11 +1,14 @@
 <!DOCTYPE>
 <html>
   <body>
+    <h1>{{ request.GET.page }}</h1>
+    {% comment %}
     <dl>
-      {% for name, value in request.REQUEST.items %}
-        <dt>{{ name }}</dt>
-        <dd>{{ value }}</dd>
-      {% endfor %}
+        {% for name, value in request.REQUEST.items %}
+          <dt>{{ name }}</dt>
+          <dd>{{ value }}</dd>
+        {% endfor %}
     </dl>
+    {% endcomment %}
   </body>
 </html>
