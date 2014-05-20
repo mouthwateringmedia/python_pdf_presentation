@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-WKHTMLTOPDF_PATH = os.path.join(BASE_DIR, '../wkhtmltox/bin/wkhtmltopdf')
+WKHTMLTOPDF_PATH = os.path.join(BASE_DIR, '../wkhtmltopdf-linux-32bit')
 if not os.path.exists(WKHTMLTOPDF_PATH):
     raise ValueError('Verify your WKHTMLTOPDF_PATH setting')
 
@@ -27,6 +27,9 @@ SECRET_KEY = 'hf@63(8%ra575+a37p)whodyo3(kx%=lk7(e+2hvi3_jkju54g'
 DEBUG = True
 
 TEMPLATE_DEBUG = True
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'main/templates'),
+)
 
 ALLOWED_HOSTS = []
 

@@ -27,5 +27,5 @@ def print_to_pdf(request, name, url):
         p = subprocess.Popen(command, stdout=subprocess.PIPE)
         p.wait()
         response = HttpResponse(temp.read(), mimetype='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename={}.pdf'.format(name)
+    response['Content-Disposition'] = 'inline; filename={}.pdf'.format(name)
     return response

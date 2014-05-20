@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    .nav {
+      height: 900px;
+      width: 29%;
+      overflow-y: auto;
+      float: left;
+    }
+
+    .nav ul,
+    .nav ol {
+      padding-left: 20px;
+    }
+
+    .nav-url {
+      width: 70%;
+    }
+
+    .nav-view {
+      height: 900px;
+      width: 70%;
+      border: 5px inset gray;
+    }
+  </style>
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script>
+    $(document).ready(function($) {
+      setInterval(function() {
+        $('.nav-url').val(window.frames['nav-view'].document.location.href);
+      }, 1000);
+    });
+  </script>
+  <body>
+    <div class="nav">
+      <h1>PDF automation demos:</h1>
+      <ol>
+        <li>
+          <ol type="a">
+            <li><a href="/admin/" target="nav-view">View Django admin</a></li>
+            <li><a href="/print-to-pdf/MyAdminFileName/admin/" target="_blank"
+              >Create PDF with<br/>
+              <tt>http://localhost:8000/print-to-pdf/MyAdminFileName/admin/</tt></a>
+            </li>
+          </ol>
+        </li>
+
+        <li>
+        </li>
+      </ol>
+    </div>
+
+    <input type="text" class="nav-url"/>
+    <iframe class="nav-view" name="nav-view">
+    </iframe>
+  </body>
+</html>
