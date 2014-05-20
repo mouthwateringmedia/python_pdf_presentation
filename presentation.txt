@@ -1,0 +1,24 @@
+Starting up Powerpoint
+⌛
+
+ಠಠ I see you are trying to show
+📎  a presentation in a terminal.
+
+Automating PDFs with Python and command-line tools
+by Edwin Grubbs <egrubbs@mwmdigital.com>
+
+Software Used:
+----------------------------------------
+* http://wkhtmltopdf.org/              *
+|    99% of the work                   |
+| http://mstamy2.github.io/PyPDF2/     |
+|    concatenation & merging           |
+| http://www.reportlab.com/opensource/ |
+|    much faster than wkhtmltopdf      |
+|    for minor edits                   |
+
+Demo html-to-pdf in Django:
+First, log into http://localhost:8000/admin/
+Then, open http://localhost:8000/print-to-pdf/MyPDFName/admin/
+which will grab http://localhost:8000/admin/
+and create a pdf.
