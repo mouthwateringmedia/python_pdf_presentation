@@ -84,14 +84,22 @@ wkhtmltopdf doesn't support either of them.
 Fortunately, wkhtmltopdf provides the
 --header-html and --footer-html options.
 
-It is very important that your header and footer
-contain a <!DOCTYPE>.
---------------
-| <!DOCTYPE> |
-| <html>     |
-|   <body>   |
-|   </body>  |
-| </html>    |
+It is very important that your header
+and footer contain <!DOCTYPE html>
+and the css below.
+-----------------------------
+| <!DOCTYPE html>           |
+| <html>                    |
+|   <head>                  |
+|     <style>               |
+|       html, body {        |
+|         height: 200px;    |
+|         margin: 0;        |
+|         padding: 0;       |
+|         overflow: hidden; |
+|       }                   |
+|     </style>              |
+|   </head>                 |
 
 #####
 Useful links:
